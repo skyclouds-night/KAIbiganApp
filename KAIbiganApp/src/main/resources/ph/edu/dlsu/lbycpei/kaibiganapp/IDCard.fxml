@@ -10,8 +10,8 @@
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" spacing="10.0" styleClass="body" stylesheets="@styles/kaibigan.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ph.edu.dlsu.lbycpei.kaibiganapp.controllers.IDCardController">
    <children>
       <Label styleClass="create-label" text="Medical ID" />
-      <Button mnemonicParsing="false" onAction="#MainMenuButton" prefHeight="25.0" prefWidth="121.0" text="Main Menu" />
-      <VBox alignment="TOP_CENTER" prefHeight="628.0" prefWidth="506.0" spacing="10.0" styleClass="create-container">
+      <Button mnemonicParsing="false" onAction="#MainMenuButton" prefHeight="25.0" prefWidth="121.0" styleClass="login-button" text="Main Menu" translateY="-11.0" />
+      <VBox alignment="TOP_CENTER" prefHeight="628.0" prefWidth="506.0" spacing="10.0" styleClass="create-container" translateY="-6.0">
          <VBox.margin>
             <Insets left="150.0" right="150.0" />
          </VBox.margin>
@@ -45,17 +45,32 @@
             <Label styleClass="id-labels" text="Conditions:" />
             <Label styleClass="email-label" text="Label" />
             <Label styleClass="id-labels" text="Emergency Contacts:" />
-            <TextArea prefHeight="108.0" prefWidth="474.0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+               <children>
+                  <Label styleClass="id-infos" text="Name:" />
+                  <TextArea prefHeight="6.0" prefWidth="399.0">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <Label styleClass="id-infos" text="Contact Number:" />
+                  <TextArea prefHeight="200.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <Button mnemonicParsing="false" styleClass="signup-button" text="Save" />
+               </children>
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets />
                </VBox.margin>
-            </TextArea>
+            </VBox>
          </children>
          <padding>
             <Insets top="25.0" />
          </padding>
       </VBox>
-      <Label styleClass="app-name" text="KAI.bigan | © 2025 Pink Pony Club | All rights reserved. " translateY="5.0" />
+      <Label styleClass="app-name" text="KAI.bigan | © 2025 Pink Pony Club | All rights reserved. " translateY="-6.0" />
    </children>
    <padding>
       <Insets top="10.0" />

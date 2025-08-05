@@ -7,11 +7,33 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 
 public class IDCardController implements DataReceiver {
     //put fxml labels
+
+    @FXML
+    private Label firstName;
+
+    @FXML
+    private Label middleName;
+
+    @FXML
+    private Label lastName;
+
+    @FXML
+    private Label birthDate;
+
+    @FXML
+    private Label height;
+
+    @FXML
+    private Label weight;
+
+    @FXML
+    private Label medicalConditions;
 
 
     @Override
