@@ -53,7 +53,6 @@ public class IDCardController implements DataReceiver {
                             String height, String weight, String email, String password,
                             String healthCondition, String medication, String workout,
                             String workoutFrequency, String workoutType) {
-        //add the code to assign values to labels
         firstName2.setText(firstName);
         middleName2.setText(middleName);
         lastName2.setText(lastName);
