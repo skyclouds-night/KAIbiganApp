@@ -25,15 +25,6 @@
     -fx-text-fill: #2E7921;
 }
 
-.smallertext {
-    -fx-alignment: center;
-    -fx-font-family: Segoe UI Semibold;
-    -fx-font-weight: bold;
-    -fx-font-size: 30px;
-    -fx-text-fill: #2E7921;
-}
-
-
 /* Login instruction*/
 .login-inst {
     -fx-alignment: center;
@@ -99,12 +90,18 @@
 }
 
 /* Sign up */
-.signup-inst {
-    -fx-alignment: center;
-    -fx-font-family: Segoe UI Light;
+.signup-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #2d7a32;
     -fx-font-size: 14px;
-    -fx-text-fill: black;
-    -fx-font-style: italic;
+    -fx-cursor: hand;
+}
+
+/* Sign up hover */
+.signup-button:hover {
+    -fx-text-fill: #46a346;
+    -fx-underline: true;
 }
 
 /* Create Label */
@@ -116,16 +113,6 @@
     -fx-effect: dropshadow(gaussian, white, 10, 0.5, 0, 0);
     -fx-text-fill: #2E7921;
 }
-
-.create-label2 {
-    -fx-alignment: center;
-    -fx-font-family: Segoe UI Semibold;
-    -fx-font-weight: bold;
-    -fx-font-size: 40px;
-    -fx-effect: dropshadow(gaussian, white, 10, 0.5, 0, 0);
-    -fx-text-fill: #2E7921;
-}
-
 
 /* Yellow Container in Create Acc */
 .create-container {
@@ -143,31 +130,53 @@
     -fx-font-weight: bold;
 }
 
-.button {
-    -fx-background-color: #F4F4B0;
-    -fx-font-family: Segoe UI Black;
-}
-
-.create-button {
-    -fx-background-color: #83D475;
-    -fx-pref-width: 150;
-    -fx-pref-height: 45;
-    -fx-text-fill: white;
-    -fx-font-size: 17;
+/* Settings options */
+.settings-options {
+    -fx-text-fill: #2E7921;
+    -fx-font-family: Segoe UI Semibold;
+    -fx-font-size: 30;
     -fx-font-weight: bold;
-    -fx-border-radius: 30;
-    -fx-background-radius: 30;
-    -fx-padding: 8 16 8 16;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 8, 0, 0, 4);
-}
-
-.create-button:hover {
-    -fx-background-color: #83D475;             /* Hover: Darker green */
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 3, 0, 0, 2);
 }
 
-.create-button:pressed {
-    -fx-background-color: #2E7921;             /* Pressed: Even darker green */
-    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
+/* Settings options hover */
+.settings-options:hover {
+    -fx-text-fill: #83D475;             /* Hover: Darker green */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 3, 0, 0, 2);
 }
+
+/* ID Surname */
+.id-surname {
+    -fx-text-fill: #2E7921;
+    -fx-font-family: Segoe UI Semibold;
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 3, 0, 0, 2);
+}
+
+/* ID FIrstLast */
+.id-name {
+    -fx-text-fill: #2E7921;
+    -fx-font-family: Segoe UI Semibold;
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 3, 0, 0, 2);
+}
+
+/* ID Labels */
+.id-labels {
+    -fx-text-fill: #FF3232;
+    -fx-font-family: Segoe UI Semibold;
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 3, 0, 0, 2);
+}
+
+/* ID Height Weight */
+.id-infos {
+    -fx-alignment: center;
+    -fx-font-family: Segoe UI Light;
+    -fx-font-size: 20px;
+    -fx-text-fill: gray;
+}
+

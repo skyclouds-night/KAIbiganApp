@@ -10,14 +10,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class IDCardController extends DataReceiver{
+public class IDCardController implements DataReceiver {
     //put fxml labels
+
 
     @Override
     public void setUserData(String firstName, String middleName, String lastName, String birthDate,
                             String height, String weight, String email, String password,
                             String healthCondition, String medication, String workout,
                             String workoutFrequency, String workoutType) {
+        //add the code to assign values to labels
     }
     @FXML
     public void MainMenuButton (ActionEvent event) throws IOException {

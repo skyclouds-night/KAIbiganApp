@@ -16,42 +16,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewController extends LoadScene, DataReceiver{
+public class ViewController extends LoadScene implements DataReceiver{
 
-    private final String FILE_PATH = "data.txt";
+    private final String FILE_PATH = "users.csv";
 
     @FXML
-    public void viewToPersonalInfo (ActionEvent event) throws IOException {
+    public void viewToPersonalInfo(ActionEvent event) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            List<String> lines = new ArrayList<>();
+            String header = reader.readLine(); // skip the header
             String line;
+
             while ((line = reader.readLine()) != null) {
-                if (!line.isEmpty()) lines.add(line);
-            }
+                if (!line.isEmpty()) {
+                    String[] values = line.split(",");
 
-            // Each account has 13 lines of data
-            for (int i = 0; i <= lines.size() - 13; i += 13) {
-                String setFirstName = lines.get(i);
-                String setMiddleName = lines.get(i + 1);
-                String setLastName = lines.get(i + 2);
-                String setBirthDate = lines.get(i + 3);
-                String setHeight = lines.get(i + 4);
-                String setWeight = lines.get(i + 5);
-                String setEmail = lines.get(i + 6);
-                String setPassword = lines.get(i + 7);
-                String setHealthCondition = lines.get(i + 8);
-                String setMedication = lines.get(i + 9);
-                String setWorkout = lines.get(i + 10);
-                String setWorkoutFrequency = lines.get(i + 11);
-                String setWorkoutType = lines.get(i + 12);
-
-                loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/Personal Info.fxml", setFirstName, setMiddleName, setLastName, setBirthDate, setHeight,
-                        setWeight, setEmail, setPassword, setHealthCondition, setMedication,
-                        setWorkout, setWorkoutFrequency, setWorkoutType);
-                return;
+                    if (values.length >= 13) {
+                        loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/Personal Info.fxml",
+                                values[0], values[1], values[2], values[3], values[4], values[5],
+                                values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
+                        return;
+                    }
+                }
             }
         }
     }
+
 
     @Override
     public void loadProfileScene(String fxml, String firstName, String middleName, String lastName,
@@ -79,8 +68,11 @@ public class ViewController extends LoadScene, DataReceiver{
                         workoutFrequency, workoutType
                 );
             } else if (controller instanceof IDCardController) {
-                ((IDCardController) controller).loadIDCardData(
-                        firstName, lastName, birthDate, height, weight
+                ((IDCardController) controller).setUserData(
+                        firstName, middleName, lastName, birthDate,
+                        height, weight, email, password,
+                        healthCondition, medication, workout,
+                        workoutFrequency, workoutType
                 );
             } else {
                 System.out.println("Unknown controller type: " + controller.getClass().getName());
@@ -116,37 +108,23 @@ public class ViewController extends LoadScene, DataReceiver{
 
     public void viewToIDCard(ActionEvent actionEvent) {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            List<String> lines = new ArrayList<>();
+            String header = reader.readLine(); // skip the header
             String line;
+
             while ((line = reader.readLine()) != null) {
-                if (!line.isEmpty()) lines.add(line);
-            }
+                if (!line.isEmpty()) {
+                    String[] values = line.split(",");
 
-            // Each account has 13 lines of data
-            for (int i = 0; i <= lines.size() - 13; i += 13) {
-                String setFirstName = lines.get(i);
-                String setMiddleName = lines.get(i + 1);
-                String setLastName = lines.get(i + 2);
-                String setBirthDate = lines.get(i + 3);
-                String setHeight = lines.get(i + 4);
-                String setWeight = lines.get(i + 5);
-                String setEmail = lines.get(i + 6);
-                String setPassword = lines.get(i + 7);
-                String setHealthCondition = lines.get(i + 8);
-                String setMedication = lines.get(i + 9);
-                String setWorkout = lines.get(i + 10);
-                String setWorkoutFrequency = lines.get(i + 11);
-                String setWorkoutType = lines.get(i + 12);
-
-                loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/IDCard.fxml", setFirstName, setMiddleName, setLastName, setBirthDate, setHeight,
-                        setWeight, setEmail, setPassword, setHealthCondition, setMedication,
-                        setWorkout, setWorkoutFrequency, setWorkoutType);
-                return;
+                    if (values.length >= 13) {
+                        loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/IDCard.fxml",
+                                values[0], values[1], values[2], values[3], values[4], values[5],
+                                values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
+                        return;
+                    }
+                }
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
