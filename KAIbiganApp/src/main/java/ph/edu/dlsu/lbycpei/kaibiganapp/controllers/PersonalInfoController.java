@@ -14,7 +14,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class PersonalInfoController {
+public class PersonalInfoController extends DataReciever{
 
     @FXML
     private Label weight;
@@ -34,7 +34,7 @@ public class PersonalInfoController {
     @FXML
     private Label medicalAdvice;
 
-    private final String FILE_PATH = "data.txt";
+    private final String FILE_PATH = "data.csv";
 
     public void setUserData(String firstName, String middleName, String lastName, String birthDate, String setheight, String setweight, String email, String password, String healthCondition, String medication, String workout, String workoutFrequency, String workoutType) {
         weight.setText(setweight);

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewController extends LoadScene{
+public class ViewController extends LoadScene, DataReceiver{
 
     private final String FILE_PATH = "data.txt";
 

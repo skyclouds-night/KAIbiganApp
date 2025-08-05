@@ -9,8 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CreateAccountController extends LoadScene {
 
@@ -28,85 +27,55 @@ public class CreateAccountController extends LoadScene {
     @FXML private TextField workoutFrequency;
     @FXML private TextField workoutType;
 
-    // Save data.txt in the current working directory (not in resources)
-    private final String FILE_PATH = "data.txt";
+    private final String CSV_FILE = "users.csv";
 
     @FXML
     public void viewToAccountName(ActionEvent event) {
-        // Save input values to the file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
-            writer.write(firstName.getText()); writer.newLine();
-            writer.write(middleName.getText()); writer.newLine();
-            writer.write(lastName.getText()); writer.newLine();
-            writer.write(birthDate.getText()); writer.newLine();
-            writer.write(height.getText()); writer.newLine();
-            writer.write(weight.getText()); writer.newLine();
-            writer.write(email.getText()); writer.newLine();
-            writer.write(password.getText()); writer.newLine();
-            writer.write(healthCondition.getText()); writer.newLine();
-            writer.write(medication.getText()); writer.newLine();
-            writer.write(workout.getText()); writer.newLine();
-            writer.write(workoutFrequency.getText()); writer.newLine();
-            writer.write(workoutType.getText()); writer.newLine();
+        boolean fileExists = new File(CSV_FILE).exists();
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CSV_FILE, true))) {
+            if (!fileExists) {
+                writer.write("FirstName,MiddleName,LastName,BirthDate,Height,Weight,Email,Password,HealthCondition,Medication,Workout,WorkoutFrequency,WorkoutType");
+                writer.newLine();
+            }
+
+            String csvLine = String.join(",",
+                    escapeCSV(firstName.getText()),
+                    escapeCSV(middleName.getText()),
+                    escapeCSV(lastName.getText()),
+                    escapeCSV(birthDate.getText()),
+                    escapeCSV(height.getText()),
+                    escapeCSV(weight.getText()),
+                    escapeCSV(email.getText()),
+                    escapeCSV(password.getText()),
+                    escapeCSV(healthCondition.getText()),
+                    escapeCSV(medication.getText()),
+                    escapeCSV(workout.getText()),
+                    escapeCSV(workoutFrequency.getText()),
+                    escapeCSV(workoutType.getText())
+            );
+
+            writer.write(csvLine);
+            writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error writing to file: " + e.getMessage());
+            System.out.println("Error writing to CSV: " + e.getMessage());
             return;
         }
 
-        // Read data back from file to load the most recent account
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            List<String> lines = new ArrayList<>();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.isEmpty()) lines.add(line);
-            }
-
-            // Each account has 13 lines of data
-            for (int i = 0; i <= lines.size() - 13; i += 13) {
-                String setFirstName = lines.get(i);
-                String setMiddleName = lines.get(i + 1);
-                String setLastName = lines.get(i + 2);
-                String setBirthDate = lines.get(i + 3);
-                String setHeight = lines.get(i + 4);
-                String setWeight = lines.get(i + 5);
-                String setEmail = lines.get(i + 6);
-                String setPassword = lines.get(i + 7);
-                String setHealthCondition = lines.get(i + 8);
-                String setMedication = lines.get(i + 9);
-                String setWorkout = lines.get(i + 10);
-                String setWorkoutFrequency = lines.get(i + 11);
-                String setWorkoutType = lines.get(i + 12);
-
-                loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/accountname.fxml", setFirstName, setMiddleName, setLastName, setBirthDate, setHeight,
-                        setWeight, setEmail, setPassword, setHealthCondition, setMedication,
-                        setWorkout, setWorkoutFrequency, setWorkoutType);
-                return;
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error reading from file: " + e.getMessage());
-        }
-
-        // Optional: clear fields after saving
-        clearFields();
+        loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/accountname.fxml",
+                firstName.getText(), middleName.getText(), lastName.getText(), birthDate.getText(),
+                height.getText(), weight.getText(), email.getText(), password.getText(),
+                healthCondition.getText(), medication.getText(), workout.getText(),
+                workoutFrequency.getText(), workoutType.getText());
     }
 
-    private void clearFields() {
-        firstName.clear();
-        middleName.clear();
-        lastName.clear();
-        birthDate.clear();
-        height.clear();
-        weight.clear();
-        email.clear();
-        password.clear();
-        healthCondition.clear();
-        medication.clear();
-        workout.clear();
-        workoutFrequency.clear();
-        workoutType.clear();
+    private String escapeCSV(String value) {
+        if (value.contains(",") || value.contains("\"") || value.contains("\n")) {
+            value = value.replace("\"", "\"\"");
+            return "\"" + value + "\"";
+        }
+        return value;
     }
 
     @Override
@@ -116,11 +85,6 @@ public class CreateAccountController extends LoadScene {
                                     String workoutFrequency, String workoutType) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            if (loader.getLocation() == null) {
-                System.out.println("FXML file not found. Please check the path.");
-                return;
-            }
-
             Parent root = loader.load();
 
             ViewController controller = loader.getController();
@@ -133,7 +97,7 @@ public class CreateAccountController extends LoadScene {
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error loading the profile scene. Check your FXML path and controller setup.");
+            System.out.println("Error loading profile scene.");
         }
     }
 }
