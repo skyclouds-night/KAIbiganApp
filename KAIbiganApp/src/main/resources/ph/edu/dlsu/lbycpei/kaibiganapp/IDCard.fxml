@@ -16,45 +16,55 @@
             <Insets left="150.0" right="150.0" />
          </VBox.margin>
          <children>
-            <Label styleClass="id-surname" text="Surname" />
+            <Label fx:id="lastName2" styleClass="id-surname" text="Surname" />
             <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="499.0" spacing="10.0">
                <children>
-                  <Label styleClass="id-name" text="First Name" />
-                  <Label styleClass="id-name" text="Middle Name" />
+                  <Label fx:id="firstName2" styleClass="id-name" text="First Name" />
+                  <Label fx:id="middleName2" styleClass="id-name" text="Middle Name" />
                </children>
             </HBox>
             <Label styleClass="id-labels" text="Additional Information:" />
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="499.0" spacing="20.0">
                <children>
                   <Label styleClass="id-infos" text="Birthday:" />
-                  <Label styleClass="email-label" text="Birthday Placeholder" />
+                  <Label fx:id="birthDate2" styleClass="email-label" text="Birthday Placeholder" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="499.0" spacing="20.0">
                <children>
                   <Label styleClass="id-infos" text="Height:" />
-                  <Label styleClass="email-label" text="Height Placeholder" />
+                  <Label fx:id="height2" styleClass="email-label" text="Height Placeholder" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="499.0" spacing="20.0">
                <children>
                   <Label styleClass="id-infos" text="Weight:" />
-                  <Label styleClass="email-label" text="Weight Plaeeholder" />
+                  <Label fx:id="weight2" styleClass="email-label" text="Weight Plaeeholder" />
                </children>
             </HBox>
             <Label styleClass="id-labels" text="Conditions:" />
-            <Label styleClass="email-label" text="Label" />
+            <Label fx:id="medicalConditions" styleClass="email-label" text="Label" />
             <Label styleClass="id-labels" text="Emergency Contacts:" />
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                <children>
-                  <Label styleClass="id-infos" text="Name:" />
-                  <TextArea prefHeight="6.0" prefWidth="399.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <Label styleClass="id-infos" text="Name:" />
+                        <Label fx:id="emergencyName" styleClass="id-infos" text="Name Placeholder" />
+                     </children>
+                  </HBox>
+                  <TextArea fx:id="emergencyName1" prefHeight="6.0" prefWidth="399.0">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
                   </TextArea>
-                  <Label styleClass="id-infos" text="Contact Number:" />
-                  <TextArea prefHeight="200.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+                     <children>
+                        <Label styleClass="id-infos" text="Contact Number:" />
+                        <Label fx:id="emergencyContact1" styleClass="id-infos" text="Contact Number Placeholder" />
+                     </children>
+                  </HBox>
+                  <TextArea fx:id="emergencyContact" prefHeight="200.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
