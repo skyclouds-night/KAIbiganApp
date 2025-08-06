@@ -42,6 +42,16 @@ public class SettingsController extends LoadScene implements DataReceiver {
     }
 
     @FXML
+    public void MainMenuButton (ActionEvent event) throws IOException {
+        FXMLLoader load = new FXMLLoader(getClass().getResource("/ph/edu/dlsu/lbycpei/kaibiganapp/accountname.fxml"));
+        Parent root = load.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
     public void saveChanges(ActionEvent event) throws IOException {
         List<String> updatedLines = new ArrayList<>();
         boolean updated = false;
@@ -80,24 +90,7 @@ public class SettingsController extends LoadScene implements DataReceiver {
 
 
     }
-    @FXML
-    public void MainMenuButton(ActionEvent event) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            reader.readLine();
-            String line;
 
-            while ((line = reader.readLine()) != null) {
-                String[] values = line.split(",");
-
-                if (values.length >= 13 && values[6].equals(currentUserEmail)) {
-                    loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/accountname.fxml",
-                            values[0], values[1], values[2], values[3], values[4], values[5],
-                            values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
-                    return;
-                }
-            }
-        }
-    }
 
     @Override
     public void loadProfileScene(String fxml, String firstName, String middleName, String lastName, String birthDate, String height, String weight, String email, String password, String healthCondition, String medication, String workout, String workoutFrequency, String workoutType) {
