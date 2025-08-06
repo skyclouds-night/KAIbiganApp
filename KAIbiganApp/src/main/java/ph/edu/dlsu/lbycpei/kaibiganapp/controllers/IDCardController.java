@@ -16,37 +16,26 @@ public class IDCardController implements DataReceiver {
 
     @FXML
     private Label firstName2;
-
     @FXML
     private Label middleName2;
-
     @FXML
     private Label lastName2;
-
     @FXML
     private Label birthDate2;
-
     @FXML
     private Label height2;
-
     @FXML
     private Label weight2;
-
     @FXML
     private Label medicalConditions;
-
     @FXML
     private Label emergencyName;
-
     @FXML
     private Label emergencyContact;
-
     @FXML
     private TextField emergencyName1;
-
     @FXML
     private TextField emergencyContact1;
-
 
     @Override
     public void setUserData(String firstName, String middleName, String lastName, String birthDate,
