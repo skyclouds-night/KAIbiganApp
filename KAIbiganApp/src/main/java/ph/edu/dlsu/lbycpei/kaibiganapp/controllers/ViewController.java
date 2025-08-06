@@ -7,8 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -21,83 +19,27 @@ import java.util.List;
 public class ViewController extends LoadScene implements DataReceiver{
 
     private final String FILE_PATH = "users.csv";
-    private String currentUserEmail;
-
-    @FXML
-    private Label firstName2;
-
-    @FXML
-    private Label middleName2;
-
-    @FXML
-    private Label lastName2;
-
-    @FXML
-    private Label birthDate2;
-
-    @FXML
-    private Label height2;
-
-    @FXML
-    private Label weight2;
-
-    @FXML
-    private Label email2;
-
-    @FXML
-    private Label password2;
-
-    @FXML
-    private Label medicalConditions;
-
-    @FXML
-    private Label medication2;
-
-    @FXML
-    private Label workout2;
-
-    @FXML
-    private Label workoutFrequency2;
-
-    @FXML
-    private Label workoutType2;
 
     @FXML
     public void viewToPersonalInfo(ActionEvent event) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String header = reader.readLine();
+            String header = reader.readLine(); // skip the header
             String line;
 
             while ((line = reader.readLine()) != null) {
-                String[] values = line.split(",");
-                if (values.length >= 13 && values[6].equals(currentUserEmail)) {
-                    loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/Personal Info.fxml",
-                            values[0], values[1], values[2], values[3], values[4], values[5],
-                            values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
-                    return;
+                if (!line.isEmpty()) {
+                    String[] values = line.split(",");
+
+                    if (values.length >= 13) {
+                        loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/Personal Info.fxml",
+                                values[0], values[1], values[2], values[3], values[4], values[5],
+                                values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
+                        return;
+                    }
                 }
             }
         }
     }
-
-    @FXML
-    public void viewToIDCard(ActionEvent event) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String header = reader.readLine();
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                String[] values = line.split(",");
-                if (values.length >= 13 && values[6].equals(currentUserEmail)) {
-                    loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/Personal Info.fxml",
-                            values[0], values[1], values[2], values[3], values[4], values[5],
-                            values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
-                    return;
-                }
-            }
-        }
-    }
-
 
 
     @Override
@@ -146,26 +88,7 @@ public class ViewController extends LoadScene implements DataReceiver{
         }
     }
 
-    @Override
-    public void setUserData(String firstName, String middleName, String lastName, String birthDate, String setheight,
-                            String setweight, String email, String password, String healthCondition,
-                            String medication, String workout, String workoutFrequency, String workoutType) {
-
-        firstName2.setText(firstName);
-        middleName2.setText(middleName);
-        lastName2.setText(lastName);
-        birthDate2.setText(birthDate);
-        height2.setText(setheight);
-        weight2.setText(setweight);
-        email2.setText(email);
-        password2.setText(password);
-        medicalConditions.setText(healthCondition);
-        medication2.setText(medication);
-        workout2.setText(workout);
-        workoutFrequency2.setText(workoutFrequency);
-        workoutType2.setText(workoutType);
-
-        currentUserEmail = email;
+    public void setUserData(String firstName, String middleName, String lastName, String birthDate, String setheight, String setweight, String email, String password, String healthCondition, String medication, String workout, String workoutFrequency, String workoutType) {
     }
 
     @FXML
@@ -178,8 +101,32 @@ public class ViewController extends LoadScene implements DataReceiver{
         stage.show();
     }
 
+
     @FXML
     public void ExitApp (ActionEvent event) {
         Platform.exit();
+    }
+
+    @FXML
+    public void viewToIDCard(ActionEvent actionEvent) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String header = reader.readLine(); // skip the header
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                if (!line.isEmpty()) {
+                    String[] values = line.split(",");
+
+                    if (values.length >= 13) {
+                        loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/IDCard.fxml",
+                                values[0], values[1], values[2], values[3], values[4], values[5],
+                                values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
+                        return;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

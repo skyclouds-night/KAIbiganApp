@@ -3,20 +3,31 @@ package ph.edu.dlsu.lbycpei.kaibiganapp.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.TextField;
 
-import javax.xml.crypto.Data;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class SettingsController extends LoadScene implements DataReceiver{
+public class SettingsController extends LoadScene implements DataReceiver {
     private String currentUserEmail;
     private final String FILE_PATH = "users.csv";
+
+    @FXML
+    private TextField updateHeight;
+
+    @FXML
+    private TextField updateWeight;
+
+    @FXML
+    private TextField updateEmail;
+
+    @FXML
+    private TextField updatePassword;
 
     @Override
     public void setUserData(String firstName, String middleName, String lastName, String birthDate, String setheight,
@@ -24,17 +35,60 @@ public class SettingsController extends LoadScene implements DataReceiver{
                             String medication, String workout, String workoutFrequency, String workoutType) {
 
         currentUserEmail = email;
+        updateHeight.setText(setheight);
+        updateWeight.setText(setweight);
+        updateEmail.setText(email);
+        updatePassword.setText(password);
     }
 
+    @FXML
+    public void saveChanges(ActionEvent event) throws IOException {
+        List<String> updatedLines = new ArrayList<>();
+        boolean updated = false;
 
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String header = reader.readLine();
+            updatedLines.add(header);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] values = line.split(",");
+
+                if (values.length < 13) continue;
+
+                if (values[6].equals(currentUserEmail)) {
+                    values[4] = updateHeight.getText().trim();
+                    values[5] = updateWeight.getText().trim();
+                    values[6] = updateEmail.getText().trim();
+                    values[7] = updatePassword.getText().trim();
+
+                    updated = true;
+                    currentUserEmail = values[6]; // Update reference
+                }
+
+                updatedLines.add(String.join(",", values));
+            }
+        }
+
+        if (updated) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+                for (String line : updatedLines) {
+                    writer.write(line);
+                    writer.newLine();
+                }
+            }
+        }
+
+
+    }
     @FXML
     public void MainMenuButton(ActionEvent event) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String header = reader.readLine();
+            reader.readLine();
             String line;
 
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(",");
+
                 if (values.length >= 13 && values[6].equals(currentUserEmail)) {
                     loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/accountname.fxml",
                             values[0], values[1], values[2], values[3], values[4], values[5],
@@ -65,7 +119,4 @@ public class SettingsController extends LoadScene implements DataReceiver{
             System.out.println("Error loading the profile scene.");
         }
     }
-
 }
-
-
