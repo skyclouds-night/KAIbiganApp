@@ -113,7 +113,7 @@ public class ViewController extends LoadScene implements DataReceiver{
                     String[] values = line.split(",");
 
                     if (values.length >= 13) {
-                        loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/IDCard.fxml",
+                        loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/settings.fxml",
                                 values[0], values[1], values[2], values[3], values[4], values[5],
                                 values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
                         return;
