@@ -23,7 +23,7 @@
             <TextField fx:id="updateEmail" maxHeight="457.0" maxWidth="420.0" prefHeight="38.0" prefWidth="698.0" />
             <Label styleClass="settings-options" text="Update Password" />
             <TextField fx:id="updatePassword" maxHeight="457.0" maxWidth="420.0" prefHeight="38.0" prefWidth="698.0" />
-            <Button mnemonicParsing="false" onAction="#MainMenuButton" prefHeight="25.0" prefWidth="121.0" styleClass="menu-button" text="Save Changes" />
+            <Button mnemonicParsing="false" onAction="#saveChanges" prefHeight="25.0" prefWidth="121.0" styleClass="menu-button" text="Save Changes" />
             <Label styleClass="app-name" text="KAI.bigan | © 2025 Pink Pony Club | All rights reserved. " />
          </children>
          <padding>
