@@ -101,11 +101,13 @@ public class ViewController extends LoadScene implements DataReceiver{
         stage.show();
     }
 
+
     @FXML
     public void ExitApp (ActionEvent event) {
         Platform.exit();
     }
 
+    @FXML
     public void viewToIDCard(ActionEvent actionEvent) {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String header = reader.readLine(); // skip the header
