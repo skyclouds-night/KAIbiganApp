@@ -37,7 +37,7 @@
             </TextField>
             <Label styleClass="forgot-pass" text="Forgot your password?" translateX="47.0" translateY="86.0" />
             <Button mnemonicParsing="false" onAction="#viewToAccountName" styleClass="login-button" text="LOGIN" translateY="100.0" />
-            <Button mnemonicParsing="false" onAction="#viewToCreateAccount" text="Don't have an account? Sign up." translateY="126.0" />
+            <Button mnemonicParsing="false" onAction="#viewToCreateAccount" styleClass="signup-button" text="Don't have an account? Sign up." translateY="126.0" />
          </children>
          <padding>
             <Insets top="10.0" />
