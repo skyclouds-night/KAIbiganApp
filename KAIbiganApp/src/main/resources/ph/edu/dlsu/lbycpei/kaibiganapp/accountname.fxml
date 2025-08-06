@@ -6,85 +6,65 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" styleClass="body" stylesheets="@styles/kaibigan.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ph.edu.dlsu.lbycpei.kaibiganapp.controllers.ViewController">
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" styleClass="body" stylesheets="@styles/kaibigan.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ph.edu.dlsu.lbycpei.kaibiganapp.controllers.IDCardController">
    <children>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" styleClass="body" stylesheets="@styles/kaibigan.css">
-          <padding>
-              <Insets top="10.0" />
-          </padding>
-      </VBox>
-      <Circle centerX="143.0" centerY="143.0" fill="DODGERBLUE" layoutX="-50.0" layoutY="-50.0" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
-       <Label alignment="TOP_CENTER" layoutX="188.0" layoutY="51.0" styleClass="create-label" stylesheets="@styles/kaibigan.css" text="Account Name" translateY="5.0" />
-      <Line endY="500.0" layoutX="164.0" layoutY="258.0" startY="-100.0" />
-      <Label alignment="TOP_CENTER" layoutX="207.0" layoutY="154.0" styleClass="create-label" stylesheets="@styles/kaibigan.css" text="Weekly Report">
-         <font>
-            <Font size="10.0" />
-         </font></Label>
-      <BarChart layoutX="159.0" layoutY="137.0" scaleX="0.8" scaleY="0.6" scaleZ="0.5">
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <Circle fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label styleClass="create-label" text="Account Name" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" top="20.0" />
+         </padding>
+      </HBox>
+      <Label styleClass="id-surname" text="Weekly Report" translateX="142.0">
+         <padding>
+            <Insets left="50.0" />
+         </padding>
+      </Label>
+      <BarChart prefHeight="183.0" prefWidth="800.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis side="LEFT" />
         </yAxis>
+         <padding>
+            <Insets left="183.0" right="229.0" />
+         </padding>
       </BarChart>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4b0" height="240.0" layoutX="227.0" layoutY="524.0" stroke="#f4f4b0" strokeType="INSIDE" styleClass="create-container" width="522.0" />
-      <Label alignment="TOP_CENTER" layoutX="207.0" layoutY="450.0" styleClass="create-label" stylesheets="@styles/kaibigan.css" text="Information to Add">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <VBox layoutX="239.0" layoutY="536.0" prefWidth="900.0" spacing="2.0" stylesheets="@styles/kaibigan.css">
+      <Label styleClass="id-surname" text="Information to Add" translateX="198.0" />
+      <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" prefWidth="500.0" text="Medicine">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#viewToPersonalInfo" prefWidth="500.0" text="Personal Health">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#viewToIDCard" prefWidth="500.0" text="Medical ID">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button layoutX="10.0" layoutY="61.0" mnemonicParsing="false" prefWidth="500.0" text="Sleep">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button layoutX="10.0" layoutY="86.0" mnemonicParsing="false" prefWidth="500.0" text="Food Intake">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button layoutX="10.0" layoutY="111.0" mnemonicParsing="false" prefWidth="500.0" text="Mental Wellbeing">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button layoutX="10.0" layoutY="137.0" mnemonicParsing="false" prefWidth="500.0" text="Doctors Appointment">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button layoutX="10.0" layoutY="162.0" mnemonicParsing="false" onAction="#viewToSettings" prefWidth="500.0" text="Settings">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4b0" height="300.0" stroke="#f4f4b0" strokeType="INSIDE" styleClass="yellow-container" translateX="26.0" width="450.0">
+               <StackPane.margin>
+                  <Insets top="10.0" />
+               </StackPane.margin>
+            </Rectangle>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" translateX="26.0">
+               <children>
+                  <Button mnemonicParsing="false" styleClass="menu-button" text="Medicine" />
+                  <Button mnemonicParsing="false" styleClass="menu-button" text="Personal Health" />
+                  <Button mnemonicParsing="false" styleClass="menu-button" text="Medical ID" />
+                  <Button mnemonicParsing="false" styleClass="menu-button" text="Sleep" />
+                  <Button mnemonicParsing="false" styleClass="menu-button" text="Food Intake" />
+                  <Button mnemonicParsing="false" styleClass="menu-button" text="Mental Wellbeing" />
+                  <Button mnemonicParsing="false" styleClass="menu-button" text="Doctors Appointment" />
+                  <Button mnemonicParsing="false" styleClass="menu-button" text="Settings" />
+               </children>
+               <padding>
+                  <Insets top="6.0" />
+               </padding>
+            </VBox>
          </children>
-      </VBox>
-      <Button layoutX="826.0" layoutY="733.0" mnemonicParsing="false" onAction="#ExitApp" prefHeight="65.0" prefWidth="104.0" styleClass="login-button" text="Exit" />
+      </StackPane>
+      <Button mnemonicParsing="false" styleClass="login-button" text="Exit" translateX="349.0" translateY="23.0" />
    </children>
-</AnchorPane>
+</VBox>
