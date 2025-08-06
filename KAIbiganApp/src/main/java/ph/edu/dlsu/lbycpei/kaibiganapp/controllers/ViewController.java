@@ -32,7 +32,7 @@ public class ViewController extends LoadScene implements DataReceiver{
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(",");
                 if (values.length >= 13 && values[6].equals(currentUserEmail)) {
-                    loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/Personal Info.fxml",
+                    loadProfileScene(event, "/ph/edu/dlsu/lbycpei/kaibiganapp/Personal Info.fxml",
                             values[0], values[1], values[2], values[3], values[4], values[5],
                             values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
                     return;
@@ -42,7 +42,7 @@ public class ViewController extends LoadScene implements DataReceiver{
     }
 
     @Override
-    public void loadProfileScene(String fxml, String firstName, String middleName, String lastName,
+    public void loadProfileScene(ActionEvent event, String fxml, String firstName, String middleName, String lastName,
                                  String birthDate, String height, String weight, String email, String password,
                                  String healthCondition, String medication, String workout,
                                  String workoutFrequency, String workoutType) {
@@ -85,7 +85,7 @@ public class ViewController extends LoadScene implements DataReceiver{
                 System.out.println("Unknown controller type: " + controller.getClass().getName());
             }
 
-            Stage stage = new Stage();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -113,7 +113,7 @@ public class ViewController extends LoadScene implements DataReceiver{
                     String[] values = line.split(",");
 
                     if (values.length >= 13) {
-                        loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/IDCard.fxml",
+                        loadProfileScene(event,"/ph/edu/dlsu/lbycpei/kaibiganapp/IDCard.fxml",
                                 values[0], values[1], values[2], values[3], values[4], values[5],
                                 values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
                         return;
@@ -132,7 +132,7 @@ public class ViewController extends LoadScene implements DataReceiver{
     }
 
     @FXML
-    public void viewToIDCard(ActionEvent actionEvent) {
+    public void viewToIDCard(ActionEvent event) {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String header = reader.readLine(); // skip the header
             String line;
@@ -142,7 +142,7 @@ public class ViewController extends LoadScene implements DataReceiver{
                     String[] values = line.split(",");
 
                     if (values.length >= 13) {
-                        loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/IDCard.fxml",
+                        loadProfileScene(event, "/ph/edu/dlsu/lbycpei/kaibiganapp/IDCard.fxml",
                                 values[0], values[1], values[2], values[3], values[4], values[5],
                                 values[6], values[7], values[8], values[9], values[10], values[11], values[12]);
                         return;

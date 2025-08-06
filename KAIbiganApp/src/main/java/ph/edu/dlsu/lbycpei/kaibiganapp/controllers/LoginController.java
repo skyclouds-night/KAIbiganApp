@@ -60,7 +60,7 @@ public class LoginController extends LoadScene {
                 String setWorkoutType = userData[12];
 
                 if (enteredEmail.equals(setEmail) && enteredPassword.equals(setPassword)) {
-                    loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/accountname.fxml",
+                    loadProfileScene(event,"/ph/edu/dlsu/lbycpei/kaibiganapp/accountname.fxml",
                             setFirstName, setMiddleName, setLastName, setBirthDate, setHeight,
                             setWeight, setEmail, setPassword, setHealthCondition, setMedication,
                             setWorkout, setWorkoutFrequency, setWorkoutType);
@@ -90,7 +90,7 @@ public class LoginController extends LoadScene {
     }
 
     @Override
-    public void loadProfileScene(String fxml, String firstName, String middleName, String lastName, String birthDate, String height, String weight, String email, String password, String healthCondition, String medication, String workout, String workoutFrequency, String workoutType) {
+    public void loadProfileScene(ActionEvent event, String fxml, String firstName, String middleName, String lastName, String birthDate, String height, String weight, String email, String password, String healthCondition, String medication, String workout, String workoutFrequency, String workoutType) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
 
@@ -100,7 +100,7 @@ public class LoginController extends LoadScene {
                     height, weight, email, password, healthCondition, medication,
                     workout, workoutFrequency, workoutType);
 
-            Stage stage = new Stage();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
 

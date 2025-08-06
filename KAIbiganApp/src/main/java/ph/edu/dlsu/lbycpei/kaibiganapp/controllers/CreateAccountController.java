@@ -3,6 +3,7 @@ package ph.edu.dlsu.lbycpei.kaibiganapp.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
@@ -63,7 +64,7 @@ public class CreateAccountController extends LoadScene {
             return;
         }
 
-        loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/accountname.fxml",
+        loadProfileScene(event, "/ph/edu/dlsu/lbycpei/kaibiganapp/accountname.fxml",
                 firstName.getText(), middleName.getText(), lastName.getText(), birthDate.getText(),
                 height.getText(), weight.getText(), email.getText(), password.getText(),
                 healthCondition.getText(), medication.getText(), workout.getText(),
@@ -79,10 +80,10 @@ public class CreateAccountController extends LoadScene {
     }
 
     @Override
-    protected void loadProfileScene(String fxml, String firstName, String middleName, String lastName, String birthDate,
-                                    String height, String weight, String email, String password,
-                                    String healthCondition, String medication, String workout,
-                                    String workoutFrequency, String workoutType) {
+    public void loadProfileScene(ActionEvent event, String fxml, String firstName, String middleName, String lastName, String birthDate,
+                                 String height, String weight, String email, String password,
+                                 String healthCondition, String medication, String workout,
+                                 String workoutFrequency, String workoutType) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
@@ -91,7 +92,7 @@ public class CreateAccountController extends LoadScene {
             controller.setUserData(firstName, middleName, lastName, birthDate, height, weight,
                     email, password, healthCondition, medication, workout, workoutFrequency, workoutType);
 
-            Stage stage = new Stage();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
 
