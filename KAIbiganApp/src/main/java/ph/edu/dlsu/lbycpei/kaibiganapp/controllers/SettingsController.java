@@ -77,18 +77,15 @@ public class SettingsController extends LoadScene implements DataReceiver {
                 }
             }
         }
-
-
     }
     @FXML
     public void MainMenuButton(ActionEvent event) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            reader.readLine();
+            String header = reader.readLine();
             String line;
 
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(",");
-
                 if (values.length >= 13 && values[6].equals(currentUserEmail)) {
                     loadProfileScene("/ph/edu/dlsu/lbycpei/kaibiganapp/accountname.fxml",
                             values[0], values[1], values[2], values[3], values[4], values[5],

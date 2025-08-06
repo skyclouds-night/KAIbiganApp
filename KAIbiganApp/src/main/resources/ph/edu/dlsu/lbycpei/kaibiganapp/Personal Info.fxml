@@ -59,7 +59,7 @@
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4b0" height="562.0" layoutX="20.0" stroke="#f4f4b0" strokeType="INSIDE" styleClass="create-container" width="306.0" />
                         <VBox layoutY="16.0">
                            <children>
-                              <Label fx:id="medicalHistory" alignment="TOP_CENTER" prefHeight="70.0" prefWidth="336.0" styleClass="id-name" stylesheets="@styles/kaibigan.css" text="XXX" translateY="14.0">
+                              <Label fx:id="medicalConditions" alignment="TOP_CENTER" prefHeight="70.0" prefWidth="336.0" styleClass="id-name" stylesheets="@styles/kaibigan.css" text="XXX" translateY="14.0">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
